@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f4f4;
+      text-align: center;
+      margin: 50px;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    #lotto-numbers {
+      font-size: 24px;
+      margin: 20px 0;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 18px;
+      cursor: pointer;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+  <title>로또 번호 생성기</title>
+</head>
+<body>
+  <h1>로또 번호 생성기</h1>
+  <div id="lotto-numbers"></div>
+  <button onclick="generateNumbers()">번호 생성하기</button>
+
+  <script>
+    function generateNumbers() {
+      const lottoNumbersElement = document.getElementById("lotto-numbers");
+      lottoNumbersElement.innerHTML = "";
+
+      // 1부터 45까지의 범위에서 중복되지 않는 6개의 랜덤한 번호 생성
+      const lottoNumbers = [];
+      while (lottoNumbers.length < 6) {
+        const randomNumber = Math.floor(Math.random() * 45) + 1;
+        if (!lottoNumbers.includes(randomNumber)) {
+          lottoNumbers.push(randomNumber);
+        }
+      }
+
+      // 생성된 번호를 정렬하여 표시
+      lottoNumbersElement.innerHTML = `생성된 번호: ${lottoNumbers.sort((a, b) => a - b).join(', ')}`;
+    }
+  </script>
+</body>
+</html>
